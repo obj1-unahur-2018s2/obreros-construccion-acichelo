@@ -1,0 +1,50 @@
+import obreros.*
+import casa.*
+describe "obreros"
+{
+	test "albañil puede trabajar si hay al menos 100 ladrillos"
+	{
+		const casita = new Casa()
+		casita.ladrillos(110)
+		
+		const mario = new Albanil()
+		mario.obra(casita)
+		assert.that(mario.puedeTrabajar())
+	}
+	
+	
+	test "gasista no puede trabajar si hay menos de 2 metros de caño"
+	{
+		const casita = new Casa()
+		casita.canioDeGas(1)
+		
+		const flavia = new Gasista()
+		flavia.obra(casita)
+		assert.notThat(flavia.puedeTrabajar())
+	}
+	
+	test "plomero no puede trabajar si hay menos de 10 metros de caño de agua"
+	{
+		const casita = new Casa()
+		casita.canioDeAgua(9)
+		
+		const juan = new Plomero()
+		juan.obra(casita)
+		assert.notThat(juan.puedeTrabajar())
+	}
+	
+	test "electricista no puede trabajar si hay menos de 3 metros de cables"
+	{
+		const casita = new Casa()
+		casita.cable(2)
+		
+		const pedro = new Electricista()
+		pedro.obra(casita)
+		assert.notThat(pedro.puedeTrabajar())
+	}
+	
+	
+}
+
+
+
