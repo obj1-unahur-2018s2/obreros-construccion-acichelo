@@ -1,50 +1,35 @@
 import obreros.*
-import casa.*
-describe "obreros"
-{
-	test "albañil puede trabajar si hay al menos 100 ladrillos"
-	{
-		const casita = new Casa()
-		casita.ladrillos(110)
+import obra.*
+//tenia una clase x archivo
+
+describe "Obreros" {
+	const obra = new Obra()
+	const albanil1 = new Albanil()
+	const albanil2 = new Albanil()
+	const gasista1 = new Gasista()
+	const gasista2 = new Gasista()
+	const plomero = new Plomero()
+	fixture
+	 {
+		obra.ladrillos(1000)
+		obra.metrosDeCanio(400)
+		obra.fosforos(8000)
+		obra.arandelas(500)
 		
-		const mario = new Albanil()
-		mario.obra(casita)
-		assert.that(mario.puedeTrabajar())
-	}
-	
-	
-	test "gasista no puede trabajar si hay menos de 2 metros de caño"
-	{
-		const casita = new Casa()
-		casita.canioDeGas(1)
+		obra.agregarObrero(albanil1)
+		obra.agregarObrero(albanil2)
+		obra.agregarObrero(gasista1)
+		obra.agregarObrero(gasista2)
+		obra.agregarObrero(plomero)
 		
-		const flavia = new Gasista()
-		flavia.obra(casita)
-		assert.notThat(flavia.puedeTrabajar())
+		albanil1.estaDeLicencia(true)
 	}
-	
-	test "plomero no puede trabajar si hay menos de 10 metros de caño de agua"
-	{
-		const casita = new Casa()
-		casita.canioDeAgua(9)
-		
-		const juan = new Plomero()
-		juan.obra(casita)
-		assert.notThat(juan.puedeTrabajar())
+	test "registran su consumo en la obra" {
+		obra.registrarJornada()
+		assert.equals(900, obra.ladrillos())
+		assert.equals(384, obra.metrosDeCanio())
+		assert.equals(7960, obra.fosforos())
+		assert.equals(470, obra.arandelas())
 	}
-	
-	test "electricista no puede trabajar si hay menos de 3 metros de cables"
-	{
-		const casita = new Casa()
-		casita.cable(2)
-		
-		const pedro = new Electricista()
-		pedro.obra(casita)
-		assert.notThat(pedro.puedeTrabajar())
-	}
-	
-	
 }
-
-
 

@@ -1,51 +1,50 @@
-class Obrero
+class Obrero 
 {
-	var property obra
-	var property material = false
-	
-	method tieneMaterial(){return material}
+	var property estaDeLicencia = false
+	method trabajarEn(obra)
 }
 
 
 class Albanil inherits Obrero
 {
 	
-	method puedeTrabajar(){return obra.ladrillos()>100}
-	
-	override method tieneMaterial()
+	const consumoLadrillos = 100
+	override method trabajarEn(obra) 
 	{
-		return super()&&!material
+	obra.consumirLadrillos(consumoLadrillos)
 	}
 }
 
 class Gasista inherits Obrero
 {
 	
-	method puedeTrabajar(){return obra.canioDeGas()>=2}
-	
-	override method tieneMaterial()
+	const consumoMetrosCanios = 3
+	const consumoFosforos = 20
+	override method trabajarEn(obra) 
 	{
-		return super()&&!material
+	obra.consumirMetrosDeCanio(consumoMetrosCanios)
+	obra.consumirFosforos(consumoFosforos)
 	}
 }
 
 class Plomero inherits Obrero
 {
-	
-	method puedeTrabajar(){return obra.canioDeAgua()>=10}
-	
-	override method tieneMaterial()
+	const consumoMetrosCanio = 10
+	const consumoArandelas = 30
+	override method trabajarEn(obra) 
 	{
-		return super()&&!material
+	obra.consumirMetrosDeCanio(consumoMetrosCanio)
+	obra.consumirArandelas(consumoArandelas)
 	}
 }
 
 class Electricista inherits Obrero
 {
-	method puedeTrabajar(){return obra.cable()>=3}
-	
-	override method tieneMaterial()
+	const consumoMetrosCable = 4
+	const consumoCintaAisladora = 1
+	override method trabajarEn(obra) 
 	{
-		return super()&&!material
+	obra.consumirMetrosDeCable(consumoMetrosCable)
+	obra.consumirCinta(consumoCintaAisladora)
 	}
 }
