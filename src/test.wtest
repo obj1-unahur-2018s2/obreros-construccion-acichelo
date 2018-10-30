@@ -31,5 +31,22 @@ describe "Obreros" {
 		assert.equals(7960, obra.fosforos())
 		assert.equals(470, obra.arandelas())
 	}
+	
+	
+	
+	test "la obra falla si no tiene obreros disponibles"
+	{
+		[albanil1, gasista1, gasista2, plomero]
+		.forEach{obr=>obr.estaDeLicencia(true)}
+		
+		assert.throwsException{obra.resgistrarJornada()}//si no pongo codigo se ejecuta adentro del test y no del assert
+	}
+	
+	test "las leyes laborales están para respetarse"
+	{
+		
+		assert.throwsException{obra.quitarObrero(albanil1)}
+		
+	}
 }
 

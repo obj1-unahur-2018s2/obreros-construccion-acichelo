@@ -16,10 +16,14 @@ class Obra
 	}
 	method quitarObrero(obrero) 
 	{
+		if(obrero.estaDeLicencia()){self.error("las leyes laborales están para respetarse - licencia implica estabilidad laboral")}
 		plantillaObreros.remove(obrero)
 	}
 	method registrarJornada() 
 	{
+		if(self.obrerosDisponibles().isEmpty())
+		{self.error("no hay obreros disponibles para trabajar")} //corta el programa
+		
 		self.obrerosDisponibles()
 			.forEach({ obrero => obrero.trabajarEn(self)})
 	}
@@ -29,6 +33,7 @@ class Obra
 	}
 	method estaEnLaPlantilla(obrero) 
 	{
+		
 		return plantillaObreros.contains(obrero)
 	}
 	method consumirLadrillos(cant) 
